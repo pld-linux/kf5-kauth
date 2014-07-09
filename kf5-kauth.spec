@@ -12,7 +12,7 @@
 %define		orgname		kauth
 
 Summary:	Execute actions as privileged user
-Name:		kde5-%{orgname}
+Name:		kf5-%{orgname}
 Version:	5.0.0
 Release:	0.1
 License:	GPL v2+/LGPL v2.1+
@@ -26,12 +26,14 @@ BuildRequires:	Qt5Gui-devel >= 5.3.1
 BuildRequires:	Qt5Test-devel
 BuildRequires:	Qt5Widgets-devel
 BuildRequires:	cmake >= 2.8.12
-BuildRequires:	kde5-extra-cmake-modules >= 1.0.0
-BuildRequires:	kde5-kcoreaddons-devel >= %{version}
+BuildRequires:	kf5-extra-cmake-modules >= 1.0.0
+BuildRequires:	kf5-kcoreaddons-devel >= %{version}
 BuildRequires:	polkit-qt-1-devel
 BuildRequires:	qt5-linguist
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		qt5dir		%{_libdir}/qt5
 
 %description
 KAuth provides a convenient, system-integrated way to offload actions
@@ -57,7 +59,17 @@ Pliki nagłówkowe dla programistów używających %{orgname}.
 install -d build
 cd build
 %cmake \
-	-DECM_MKSPECS_INSTALL_DIR=%{_libdir}/qt5/mkspecs/modules \
+	-DBIN_INSTALL_DIR=%{_bindir} \
+	-DKCFG_INSTALL_DIR=%{_datadir}/config.kcfg \
+	-DPLUGIN_INSTALL_DIR=%{qt5dir}/plugins \
+	-DQT_PLUGIN_INSTALL_DIR=%{qt5dir}/plugins \
+	-DQML_INSTALL_DIR=%{qt5dir}/qml \
+	-DIMPORTS_INSTALL_DIR=%{qt5dirs}/imports \
+	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
+	-DLIBEXEC_INSTALL_DIR=%{_libexecdir} \
+	-DKF5_LIBEXEC_INSTALL_DIR=%{_libexecdir} \
+	-DKF5_INCLUDE_INSTALL_DIR=%{_includedir} \
+	-DECM_MKSPECS_INSTALL_DIR=%{qt5dir}/mkspecs/modules \
 	-D_IMPORT_PREFIX=%{_prefix} \
 	../
 %{__make}
@@ -82,15 +94,20 @@ rm -rf $RPM_BUILD_ROOT
 /etc/dbus-1/system.d/org.kde.kf5auth.conf
 %attr(755,root,root) %ghost %{_libdir}/libKF5Auth.so.5
 %attr(755,root,root) %{_libdir}/libKF5Auth.so.5.0.0
-%dir %{_libdir}/libexec/kauth
-%attr(755,root,root) %{_libdir}/libexec/kauth/kauth-policy-gen
-%attr(755,root,root) %{_libdir}/plugins/kauth
-%{_datadir}/kf5/kauth
+%dir %{qt5dir}/plugins/kauth
+%dir %{qt5dir}/plugins/kauth/backend
+%attr(755,root,root) %{qt5dir}/plugins/kauth/backend/kauth_backend_plugin.so
+%dir %{qt5dir}/plugins/kauth/helper
+%attr(755,root,root) %{qt5dir}/plugins/kauth/helper/kauth_helper_plugin.so
+%dir %{_libdir}/kauth
+%attr(755,root,root) %{_libdir}/kauth/kauth-policy-gen
+%{_datadir}/kf5/kauth/dbus_policy.stub
+%{_datadir}/kf5/kauth/dbus_service.stub
 
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/KF5/KAuth
 %{_includedir}/KF5/kauth_version.h
-%attr(755,root,root) %{_libdir}/libKF5Auth.so
 %{_libdir}/cmake/KF5Auth
-%{_libdir}/qt5/mkspecs/modules/qt_KAuth.pri
+%attr(755,root,root) %{_libdir}/libKF5Auth.so
+%{qt5dir}/mkspecs/modules/qt_KAuth.pri
