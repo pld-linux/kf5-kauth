@@ -89,6 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{qt5dir}/plugins/kauth
 %dir %{qt5dir}/plugins/kauth/helper
 %attr(755,root,root) %{qt5dir}/plugins/kauth/helper/kauth_helper_plugin.so
+%dir %{_datadir}/kf5/kauth
 %{_datadir}/kf5/kauth/dbus_policy.stub
 %{_datadir}/kf5/kauth/dbus_service.stub
 
