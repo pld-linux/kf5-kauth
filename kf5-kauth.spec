@@ -1,13 +1,5 @@
 # TODO:
-# - proper place for *.pri,
-# - set ECM_MKSPECS_INSTALL_DIR in kde5-extra-cmake-modules
-# - _IMPORT_PREFIX also must be set somewhere
 # - runtime Requires if any
-# - these dirs are not own by any package
-#  /usr/include/KF5
-#  /usr/lib/libexec
-#  /usr/lib/plugins
-#  /usr/share/kf5
 %define		kdeframever	5.4
 %define		qtver		5.3.2
 %define		kfname		kauth
