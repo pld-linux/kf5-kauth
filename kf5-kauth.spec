@@ -1,17 +1,17 @@
 # TODO:
 # - runtime Requires if any
-%define		kdeframever	5.4
+%define		kdeframever	5.10
 %define		qtver		5.3.2
 %define		kfname		kauth
 
 Summary:	Execute actions as privileged user
 Name:		kf5-%{kfname}
-Version:	5.4.0
+Version:	5.10.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	b6d6f9a7f6d01758d7a2b543dface3f7
+# Source0-md5:	55b1eb4e58051e376c22cf3786924515
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -21,7 +21,8 @@ BuildRequires:	Qt5Widgets-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	kf5-extra-cmake-modules >= 1.0.0
 BuildRequires:	kf5-kcoreaddons-devel >= %{version}
-BuildRequires:	polkit-qt-1-devel
+BuildRequires:	polkit-qt5-1-devel
+BuildRequires:	polkit-qt5-1-gui-devel
 BuildRequires:	qt5-linguist
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	tar >= 1:1.22
@@ -64,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C build/ install \
         DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{kfname}5_qt --with-qm
+%find_lang %{kfname}5_qt --with-qm --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -77,10 +78,14 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md
 /etc/dbus-1/system.d/org.kde.kf5auth.conf
 %attr(755,root,root) %ghost %{_libdir}/libKF5Auth.so.5
-%attr(755,root,root) %{_libdir}/libKF5Auth.so.5.4.0
+%attr(755,root,root) %{_libdir}/libKF5Auth.so.*.*
 %dir %{qt5dir}/plugins/kauth
+%dir %{qt5dir}/plugins/kauth/backend
+%attr(755,root,root) %{qt5dir}/plugins/kauth/backend/kauth_backend_plugin.so
 %dir %{qt5dir}/plugins/kauth/helper
 %attr(755,root,root) %{qt5dir}/plugins/kauth/helper/kauth_helper_plugin.so
+%dir %{_libdir}/kauth
+%attr(755,root,root) %{_libdir}/kauth/kauth-policy-gen
 %dir %{_datadir}/kf5/kauth
 %{_datadir}/kf5/kauth/dbus_policy.stub
 %{_datadir}/kf5/kauth/dbus_service.stub
