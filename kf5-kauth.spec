@@ -65,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C build/ install \
         DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{kfname}5_qt --with-qm --all-name
+%find_lang %{kfname}5_qt --with-qm --all-name --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
