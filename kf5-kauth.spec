@@ -1,17 +1,17 @@
 # TODO:
 # - runtime Requires if any
-%define		kdeframever	5.56
+%define		kdeframever	5.59
 %define		qtver		5.9.0
 %define		kfname		kauth
 
 Summary:	Execute actions as privileged user
 Name:		kf5-%{kfname}
-Version:	5.56.0
+Version:	5.59.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	3d4fe8eda589cca76ca846e8a151c638
+# Source0-md5:	80da78562d813e834039c8c166d8f940
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -78,7 +78,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{kfname}5_qt.lang
 %defattr(644,root,root,755)
 %doc README.md
-/etc/dbus-1/system.d/org.kde.kf5auth.conf
 %attr(755,root,root) %ghost %{_libdir}/libKF5Auth.so.5
 %attr(755,root,root) %{_libdir}/libKF5Auth.so.*.*
 %attr(755,root,root) %ghost %{_libdir}/libKF5AuthCore.so.5
@@ -91,6 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libexecdir}/kauth
 %attr(755,root,root) %{_libexecdir}/kauth/kauth-policy-gen
 %dir %{_datadir}/kf5/kauth
+%{_datadir}/dbus-1/system.d/org.kde.kf5auth.conf
 %{_datadir}/kf5/kauth/dbus_policy.stub
 %{_datadir}/kf5/kauth/dbus_service.stub
 /etc/xdg/kauth.categories
