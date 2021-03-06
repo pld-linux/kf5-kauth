@@ -1,17 +1,17 @@
 # TODO:
 # - runtime Requires if any
-%define		kdeframever	5.67
+%define		kdeframever	5.79
 %define		qtver		5.9.0
 %define		kfname		kauth
 
 Summary:	Execute actions as privileged user
 Name:		kf5-%{kfname}
-Version:	5.67.0
+Version:	5.79.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	8677547f35f4d4720d41325fbd3a6336
+# Source0-md5:	29569aea274980c7be0fa113fbdd72b5
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -94,6 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kf5/kauth/dbus_policy.stub
 %{_datadir}/kf5/kauth/dbus_service.stub
 %{_datadir}/qlogging-categories5/kauth.categories
+%{_datadir}/qlogging-categories5/kauth.renamecategories
 
 %files devel
 %defattr(644,root,root,755)
