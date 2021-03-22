@@ -1,17 +1,17 @@
 # TODO:
 # - runtime Requires if any
-%define		kdeframever	5.79
+%define		kdeframever	5.80
 %define		qtver		5.9.0
 %define		kfname		kauth
 
 Summary:	Execute actions as privileged user
 Name:		kf5-%{kfname}
-Version:	5.79.0
+Version:	5.80.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	29569aea274980c7be0fa113fbdd72b5
+# Source0-md5:	82cbe8c336efc8dd2b9e3fc8ee969318
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -78,9 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{kfname}5_qt.lang
 %defattr(644,root,root,755)
 %doc README.md
-%attr(755,root,root) %ghost %{_libdir}/libKF5Auth.so.5
+%ghost %{_libdir}/libKF5Auth.so.5
 %attr(755,root,root) %{_libdir}/libKF5Auth.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libKF5AuthCore.so.5
+%ghost %{_libdir}/libKF5AuthCore.so.5
 %attr(755,root,root) %{_libdir}/libKF5AuthCore.so.5.*.*
 %dir %{qt5dir}/plugins/kauth
 %dir %{qt5dir}/plugins/kauth/backend
@@ -101,7 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/KF5/KAuth
 %{_includedir}/KF5/kauth_version.h
 %{_libdir}/cmake/KF5Auth
-%attr(755,root,root) %{_libdir}/libKF5Auth.so
-%attr(755,root,root) %{_libdir}/libKF5AuthCore.so
+%{_libdir}/libKF5Auth.so
+%{_libdir}/libKF5AuthCore.so
 %{qt5dir}/mkspecs/modules/qt_KAuth.pri
 %{qt5dir}/mkspecs/modules/qt_KAuthCore.pri
