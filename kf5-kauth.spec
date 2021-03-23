@@ -25,7 +25,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	polkit-qt5-1-devel >= 0.99.0
 BuildRequires:	polkit-qt5-1-gui-devel >= 0.99.0
 BuildRequires:	qt5-linguist >= %{qtver}
-BuildRequires:	rpmbuild(macros) >= 1.164
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	Qt5Core >= %{qtver}
