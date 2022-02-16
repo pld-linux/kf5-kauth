@@ -1,17 +1,17 @@
 # TODO:
 # - runtime Requires if any
-%define		kdeframever	5.90
+%define		kdeframever	5.91
 %define		qtver		5.15.2
 %define		kfname		kauth
 
 Summary:	Execute actions as privileged user
 Name:		kf5-%{kfname}
-Version:	5.90.0
+Version:	5.91.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	07091fe882f27f41b800944d772a7ace
+# Source0-md5:	9771c45d5646210509a1f336f080db8a
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -104,7 +104,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/KF5/KAuth
-%{_includedir}/KF5/kauth_version.h
 %{_libdir}/cmake/KF5Auth
 %{_libdir}/libKF5Auth.so
 %{_libdir}/libKF5AuthCore.so
