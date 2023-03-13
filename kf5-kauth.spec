@@ -3,18 +3,18 @@
 %bcond_with	tests		# build with tests
 # TODO:
 # - runtime Requires if any
-%define		kdeframever	5.103
+%define		kdeframever	5.104
 %define		qtver		5.15.2
 %define		kfname		kauth
 
 Summary:	Execute actions as privileged user
 Name:		kf5-%{kfname}
-Version:	5.103.0
+Version:	5.104.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	6d28e58c5f1683063ad03dff6019cad3
+# Source0-md5:	51fff153b53b3357c1901d639e10ac8f
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
